@@ -30,6 +30,10 @@ def type_as_tag(ty: type) -> dict:
         if ty.__origin__ == dict:
             tags = [type_as_tag(t) for t in ty.__args__]
             return {"kind": "dict", "inner": tags}
+        if ty.__origin__ == type:
+            return {"kind": "type", "name": ty.__args__[0].__name__}
+    if type(ty) == type:
+        return {"kind": "user_defined", "name": ty.__name__}
     if type(ty) == typing.NewType:
         return {
             "kind": "user_defined",

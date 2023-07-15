@@ -1,5 +1,6 @@
 pub mod codegen;
 pub mod inspect;
+pub mod parser;
 
 use anyhow::Result;
 use inspect::get_inspect_json;
